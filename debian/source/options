@@ -1,0 +1,3 @@
+tar-ignore=gschemas.compiled
+tar-ignore=__pycache__
+tar-ignore=*.pyc

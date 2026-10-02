@@ -1,0 +1,13 @@
+mint-finder (1.0.0) UNRELEASED; urgency=medium
+
+  * Initial release. Search programs, files, and folders from a shortcut.
+  * Group preferences and keep the shortcut hint next to the shortcut.
+  * State that this project is independent of Linux Mint.
+  * Leave the compiled settings cache out of the source package.
+  * Leave blacklisted folders, and everything inside them, out of search.
+  * Blacklist a folder from its result, and show matches from each search folder.
+  * Move a folder between bookmarks and the blacklist.
+  * Divide preferences into General, Bookmarks, and Blacklist pages.
+  * Keep Add and Remove the same size on every preferences page.
+
+ -- LlamaTheHutt <44986845+LlamaTheHutt@users.noreply.github.com>  Thu, 01 Oct 2026 19:23:00 -0600

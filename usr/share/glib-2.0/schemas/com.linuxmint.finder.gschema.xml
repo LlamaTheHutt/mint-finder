@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="com.linuxmint.finder" path="/com/linuxmint/finder/">
+    <key type="s" name="shortcut">
+      <default>'&lt;Super&gt;space'</default>
+      <summary>Search shortcut</summary>
+      <description>Keyboard shortcut that opens Finder.</description>
+    </key>
+    <key type="b" name="search-hidden">
+      <default>false</default>
+      <summary>Include hidden files</summary>
+      <description>Include files and folders whose names start with a dot.</description>
+    </key>
+    <key type="b" name="order-by-frequency">
+      <default>true</default>
+      <summary>Show frequently opened results first</summary>
+      <description>Show results you open most often before other matches.</description>
+    </key>
+    <key type="b" name="search-directories-only">
+      <default>false</default>
+      <summary>Search programs and folders only</summary>
+      <description>Leave files out of the results. Programs and folders are still searched.</description>
+    </key>
+    <key type="as" name="search-locations">
+      <default>[]</default>
+      <summary>Folders to search</summary>
+      <description>First run uses your home folder. An empty list searches nowhere.</description>
+    </key>
+    <key type="as" name="excluded-locations">
+      <default>[]</default>
+      <summary>Blacklist</summary>
+      <description>These folders and everything inside them are left out of search.</description>
+    </key>
+  </schema>
+</schemalist>

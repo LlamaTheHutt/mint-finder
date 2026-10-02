@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+
+DOMAIN = "mint-finder"
+PATH = "/usr/share/linuxmint/locale"
+
+import os
+import gettext
+
+os.environ["LANGUAGE"] = "en_US.UTF-8"
+gettext.install(DOMAIN, PATH)
+
+desktop = """[Desktop Entry]
+Name=%s
+Comment=%s
+Exec=mint-finder
+Icon=mint-finder
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GNOME;GTK;Utility;
+Keywords=search;find;files;folders;programs;
+StartupNotify=false
+StartupWMClass=mint-finder
+NotShowIn=KDE;
+""" % (_("Finder"), _("Search programs, files, and folders"))
+
+with open("usr/share/applications/mint-finder.desktop", "w", encoding="utf-8") as handle:
+    handle.write(desktop)

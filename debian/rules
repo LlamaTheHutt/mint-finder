@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_install:
+	rm -rf usr/lib/linuxmint/mint-finder/__pycache__
+	dh_install
+	rm -rf debian/mint-finder/usr/lib/linuxmint/mint-finder/__pycache__
+	rm -f debian/mint-finder/usr/share/glib-2.0/schemas/gschemas.compiled

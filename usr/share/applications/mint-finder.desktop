@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Finder
+Comment=Search programs, files, and folders
+Exec=mint-finder
+Icon=mint-finder
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=GNOME;GTK;Utility;
+Keywords=search;find;files;folders;programs;
+StartupNotify=false
+StartupWMClass=mint-finder
+NotShowIn=KDE;

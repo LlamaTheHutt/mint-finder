@@ -1,0 +1,7 @@
+#!/bin/bash
+intltool-extract --type=gettext/glade usr/share/linuxmint/mint-finder/mint-finder.ui
+xgettext --language=Python --keyword=_ --output=mint-finder.pot \
+    usr/lib/linuxmint/mint-finder/*.py \
+    usr/share/linuxmint/mint-finder/mint-finder.ui.h \
+    generate_desktop_files
+rm -f usr/share/linuxmint/mint-finder/mint-finder.ui.h

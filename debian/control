@@ -1,0 +1,21 @@
+Source: mint-finder
+Section: utils
+Priority: optional
+Maintainer: LlamaTheHutt <44986845+LlamaTheHutt@users.noreply.github.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: mint-finder
+Architecture: all
+Depends: python3 (>= 3.8),
+ python3-gi,
+ gir1.2-gtk-3.0,
+ gir1.2-xapp-1.0,
+ mint-common,
+ xapp-symbolic-icons,
+ ${misc:Depends}
+Recommends: plocate | mlocate
+Description: Search programs, files, and folders
+ Independent search window for Linux Mint, published separately
+ from the Linux Mint project. Opens from a keyboard shortcut and
+ finds installed programs, files, and folders.

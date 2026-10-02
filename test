@@ -1,0 +1,50 @@
+#!/bin/bash
+set -e
+DIR="$(dirname "$(readlink -f "$0")")"
+cd "$DIR"
+
+SCHEMA_DIR="$DIR/usr/share/glib-2.0/schemas"
+if command -v glib-compile-schemas >/dev/null 2>&1; then
+    glib-compile-schemas "$SCHEMA_DIR"
+    chmod a+r "$SCHEMA_DIR/gschemas.compiled" 2>/dev/null || true
+fi
+# GSETTINGS_SCHEMA_DIR replaces the system schema path, which hides Keyboard settings.
+unset GSETTINGS_SCHEMA_DIR
+export XDG_DATA_DIRS="$DIR/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+if [ "$1" = "--install" ]; then
+    if ! command -v plocate >/dev/null 2>&1; then
+        if ! command -v locate >/dev/null 2>&1; then
+            sudo apt-get install -y plocate || true
+        fi
+    fi
+    sudo rm -rf /usr/lib/linuxmint/mint-finder
+    sudo cp -R usr /
+    sudo rm -rf /usr/lib/linuxmint/mint-finder/__pycache__
+    sudo rm -f /usr/share/glib-2.0/schemas/gschemas.compiled
+    sudo chmod 755 /usr/bin/mint-finder
+    sudo chmod 755 /usr/lib/linuxmint/mint-finder
+    sudo chmod 755 /usr/lib/linuxmint/mint-finder/mint-finder.py
+    sudo chmod 755 /usr/lib/linuxmint/mint-finder/search.py
+    sudo chmod 755 /usr/lib/linuxmint/mint-finder/shortcut.py
+    sudo chmod 755 /usr/share/linuxmint/mint-finder
+    sudo chmod 644 /usr/share/linuxmint/mint-finder/mint-finder.ui
+    sudo chmod 644 /usr/share/icons/hicolor/scalable/apps/mint-finder.svg
+    sudo rm -f /etc/xdg/autostart/mint-finder.desktop
+    sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+    sudo chmod 644 /usr/share/glib-2.0/schemas/gschemas.compiled
+    sudo chmod 644 /usr/share/glib-2.0/schemas/com.linuxmint.finder.gschema.xml
+    /usr/bin/python3 "$DIR/usr/lib/linuxmint/mint-finder/shortcut.py"
+    if [ -x /usr/bin/gtk-update-icon-cache ]; then
+        sudo gtk-update-icon-cache -f /usr/share/icons/hicolor || true
+    fi
+    rm -f "$HOME/.config/autostart/mint-finder.desktop"
+    if command -v pgrep >/dev/null 2>&1; then
+        pgrep -f '/linuxmint/mint-finder/mint-finder.py' | while read -r pid; do
+            kill -TERM "$pid" 2>/dev/null || true
+        done
+    fi
+    exit 0
+fi
+
+exec /usr/bin/python3 "$DIR/usr/lib/linuxmint/mint-finder/mint-finder.py" "$@"

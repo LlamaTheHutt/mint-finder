@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e
+DIR="$(dirname "$(readlink -f "$0")")"
+
+if command -v pgrep >/dev/null 2>&1; then
+    pgrep -f '/linuxmint/mint-finder/mint-finder.py' | while read -r pid; do
+        kill -TERM "$pid" 2>/dev/null || true
+    done
+    sleep 0.3
+fi
+
+/usr/bin/python3 "$DIR/usr/lib/linuxmint/mint-finder/shortcut.py" --remove || true
+if command -v dconf >/dev/null 2>&1; then
+    dconf reset -f /com/linuxmint/finder/ || true
+fi
+rm -f "$HOME/.config/autostart/mint-finder.desktop"
+
+sudo rm -f /usr/bin/mint-finder
+sudo rm -rf /usr/lib/linuxmint/mint-finder
+sudo rm -rf /usr/share/linuxmint/mint-finder
+sudo rm -f /usr/share/applications/mint-finder.desktop
+sudo rm -f /usr/share/icons/hicolor/scalable/apps/mint-finder.svg
+sudo rm -f /usr/share/glib-2.0/schemas/com.linuxmint.finder.gschema.xml
+sudo rm -f /etc/xdg/autostart/mint-finder.desktop
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+sudo chmod 644 /usr/share/glib-2.0/schemas/gschemas.compiled
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    sudo gtk-update-icon-cache -f /usr/share/icons/hicolor || true
+fi
