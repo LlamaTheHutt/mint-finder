@@ -13,6 +13,8 @@ A search window for programs, files, and folders on Linux Mint.
 
 I made this because I was tired of opening Nemo and going through folders one by one, or waiting for its search. I'm [LlamaTheHutt](https://github.com/LlamaTheHutt). I hope you all enjoy it. Linux Mint is welcome to take this project and implement it.
 
+[![mint-finder demo](https://img.youtube.com/vi/r-ZAPUnWxhY/hqdefault.jpg)](https://www.youtube.com/watch?v=r-ZAPUnWxhY)
+
 It follows the layout used by official Mint tools such as [mintwelcome](https://github.com/linuxmint/mintwelcome)
 and [mintnanny](https://github.com/linuxmint/mintnanny), and the workflow in the
 [Linux Mint Developer Guide](https://linuxmint-developer-guide.readthedocs.io/en/latest/).
